@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Courses - Confirm Delete</title>
+    {% include './header.html' %}
+  </head>
+  <body>
+    <div class="container">
+      <h1>Are you sure you want to delete the following course?</h1>
+      <h3>Name: {{doomed.name}} </h3>
+      <h3>Description: {{doomed.description.text}}</h3>
+
+
+    <form action="/" method="get">
+      <button class = "btn btn-primary" type="submit">No.</button>
+    </form>
+
+    <form action="/delete" method="post">
+      {% csrf_token %}
+      <input type="hidden" value="{{doomed.id}}" name="id" />
+      <button type="submit" class="btn btn-danger">Yes! Delete now!!!!!</button>
+    </form>
+      </div>
+  </body>
+</html>

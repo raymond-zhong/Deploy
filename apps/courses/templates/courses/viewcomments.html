@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Courses - Comments</title>
+    {% include './header.html' %}
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the comments section!!!</h1>
+      <h3>We are commenting on the course: {{course.name}}</h3>
+      {% if course.description.text %}
+      <h3>Described far and wide as {{course.description.text}}</h3>
+      {% else %}
+      <h3>A course that cannot be put into words</h3>
+      {% endif %}
+
+      <h3>What people are saying:</h3>
+      {% for comment in comments %}
+      <p>
+        {{comment.name}} says "{{comment.comment}}"
+      </p>
+      {% endfor %}
+
+
+      <form action='/createcomment' method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{course.id}}" />
+        <div class="form-group">
+          <label for="name">Your name:</label>
+          <input type="text" name="name" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <textarea name="comment" rows="4" cols="40" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit comment</button>
+      </form>
+
+
+
+
+    </div>
+
+
+  </body>
+</html>
